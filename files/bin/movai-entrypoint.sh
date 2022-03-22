@@ -15,8 +15,22 @@
 #    limitations under the License.
 #
 # File: docker-entrypoint.sh
-set -e
+set -m
 
+# Run command in background
+exec docker-entrypoint.sh ${@} &
+
+HOST=localhost
+PORT=6379
+
+printf "Waiting redis on %s:.\n" "$HOST:$PORT"
+while ! redis-cli -h $HOST -p $PORT ping | grep -q PONG; do
+    sleep 1
+    printf "."
+done
+printf "\nRedis is UP\n"
+
+# Run any needed APT install
 if [ -n "${APT_AUTOINSTALL}" ]; then
     if [ -f "${MOVAI_HOME}/.first_run_autoinstall" ] && [ "${APT_AUTOINSTALL}" = "once"  ]; then
         printf "APT autoinstall: skipped\n"
@@ -61,5 +75,8 @@ if [ -n "${APT_AUTOINSTALL}" ]; then
     fi
 fi
 
-# Run command
-exec docker-entrypoint.sh ${@}
+# now we bring the primary process back into the foreground
+fg %
+
+# remove job control
+set +m
