@@ -19,7 +19,7 @@ jobs:
     uses: MOV-AI/.github/.github/workflows/docker-workflow.yml@main
     with:
       docker_file: Dockerfile
-      docker_image: registry.cloud.mov.ai/devops/redis
+      docker_image: registry.cloud.mov.ai/devops/redis2
       github_ref: ${{ github.ref }}
     secrets:
       registry_user: ${{ secrets.PORTUS_APP_USER }}
