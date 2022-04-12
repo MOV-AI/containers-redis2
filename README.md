@@ -7,4 +7,4 @@ This image uses [RedisJSON](https://github.com/RedisJSON/RedisJSON) v2.07 as a b
 
 # quickstart
 
-  docker run -p 6379:6379 --name redis2 pubregistry.aws.cloud.mov.ai/devops/redis2
+    docker run -p 6379:6379 --name redis2 pubregistry.aws.cloud.mov.ai/ce/redis2
