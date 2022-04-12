@@ -16,7 +16,7 @@ on:
     types: [released]
 jobs:
   redis:
-    uses: MOV-AI/.github/.github/workflows/docker-workflow.yml@feat/pub_priv
+    uses: MOV-AI/.github/.github/workflows/docker-workflow.yml@main
     with:
       docker_file: Dockerfile
       docker_image: devops/redis2
