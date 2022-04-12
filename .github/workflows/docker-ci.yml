@@ -22,6 +22,7 @@ jobs:
       docker_image: devops/redis2
       github_ref: ${{ github.ref }}
       public: true
+      public_image: ce/redis2
     secrets:
       registry_user: ${{ secrets.PORTUS_APP_USER }}
       registry_password: ${{ secrets.PORTUS_APP_TOKEN }}
