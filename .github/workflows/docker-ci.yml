@@ -33,7 +33,7 @@ jobs:
           projectBaseDir: ./
           args: >
             -Dsonar.organization=mov-ai
-            -Dsonar.projectKey=${{ github.event.repository.name }}
+            -Dsonar.projectKey=MOV-AI_${{ github.event.repository.name }}
             -Dsonar.verbose=true
             -Dsonar.sources=.
             -Dsonar.scm.provider=git
