@@ -29,6 +29,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_PUBLIC_TOKEN }}
+        with:
+          projectBaseDir: ./
+          args: >
+            -Dsonar.organization=mov-ai
+            -Dsonar.projectKey=${{ github.event.repository.name }}
+            -Dsonar.verbose=true
+            -Dsonar.sources=.
+            -Dsonar.scm.provider=git
+            -Dsonar.qualitygate.wait=true
+            -Dsonar.qualitygate.timeout=300
           
   docker-build:
     uses: MOV-AI/.github/.github/workflows/docker-workflow.yml@main
