@@ -9,6 +9,7 @@ LABEL movai="redis"
 COPY files/etc/ /etc/
 COPY files/bin/ /usr/local/bin/
 
+# hadolint ignore=DL3008
 RUN apt-get update &&\
     apt-get -y install --no-install-recommends redis-tools \
     build-essential apt-transport-https curl python3 python3-dev python3-pip python3-setuptools software-properties-common unzip wget gnupg &&\
