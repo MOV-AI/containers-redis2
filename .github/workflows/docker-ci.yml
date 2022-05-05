@@ -44,7 +44,7 @@ jobs:
     uses: MOV-AI/.github/.github/workflows/docker-workflow.yml@main
     with:
       docker_file: Dockerfile
-      docker_image: devops/redis2
+      docker_image: qa/redis2
       github_ref: ${{ github.ref }}
       public: true
       public_image: ce/redis2
