@@ -17,11 +17,13 @@
 # File: docker-entrypoint.sh
 set -m
 
+sed -i -e "/^port:/s/:.*/ $REDIS_PORT/" /etc/redis.conf
+
 # Run command in background
 exec docker-entrypoint.sh ${@} &
 
 HOST=localhost
-PORT=6379
+PORT=$REDIS_PORT
 
 printf "Waiting redis on %s:.\n" "$HOST:$PORT"
 while ! redis-cli -h $HOST -p $PORT ping | grep -q PONG; do

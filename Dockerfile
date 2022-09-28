@@ -1,5 +1,5 @@
 # This Dockerfile is the base image for Mov.ai Redis
-FROM redislabs/rejson:2.0.7
+FROM redislabs/rejson:2.0.11
 # Labels
 LABEL description="MOV.AI Redis Image"
 LABEL maintainer="maintainer@mov.ai"
@@ -8,6 +8,8 @@ LABEL movai="redis"
 # Configure and install
 COPY files/etc/ /etc/
 COPY files/bin/ /usr/local/bin/
+
+ENV REDIS_PORT 6379
 
 # hadolint ignore=DL3008
 RUN apt-get update &&\
