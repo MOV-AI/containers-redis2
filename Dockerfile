@@ -22,7 +22,6 @@ RUN apt-get update &&\
     rm -rf /tmp/* &&\
     mkdir -p /default &&\
     chown -R redis:redis /usr/lib/redis/modules/redisearch.so &&\
-    chmod -R 755 /usr/lib/redis/modules/redisearch.so &&\
-    echo 'loadmodule /usr/lib/redis/modules/redisearch.so' >> /etc/redis/redis.conf
+    chmod -R 755 /usr/lib/redis/modules/redisearch.so
 
 ENTRYPOINT ["movai-entrypoint.sh","/etc/redis.conf"]
