@@ -1,5 +1,5 @@
 # This Dockerfile is the base image for Mov.ai Redis
-FROM redis-stack-server:6.2.6-v4
+FROM redis/redis-stack-server:6.2.6-v4
 # Labels
 LABEL description="MOV.AI Redis Image"
 LABEL maintainer="maintainer@mov.ai"
