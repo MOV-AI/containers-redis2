@@ -1,5 +1,5 @@
 # This Dockerfile is the base image for Mov.ai Redis
-FROM redislabs/rejson:2.0.11
+FROM redis/redis-stack-server:6.2.6-v4
 # Labels
 LABEL description="MOV.AI Redis Image"
 LABEL maintainer="maintainer@mov.ai"
@@ -19,7 +19,6 @@ RUN apt-get update &&\
     /usr/bin/pip3 install wheel rdbtools python-lzf &&\
     rm -rf /var/cache/apt/* &&\
     rm -rf /var/lib/apt/lists/*  &&\
-    rm -rf /tmp/* &&\
-    mkdir -p /default
+    rm -rf /tmp/*
 
 ENTRYPOINT ["movai-entrypoint.sh","/etc/redis.conf"]
