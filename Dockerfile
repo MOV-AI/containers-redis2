@@ -9,7 +9,8 @@ LABEL movai="redis"
 COPY files/etc/ /etc/
 COPY files/bin/ /usr/local/bin/
 
-ENV REDIS_PORT 6379
+ENV REDIS_PORT=6379 \
+    REDIS_LOGLEVEL=warning
 
 # hadolint ignore=DL3008
 RUN apt-get update &&\
