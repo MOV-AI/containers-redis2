@@ -15,7 +15,7 @@ This image uses [RedisJSON](https://github.com/RedisJSON/RedisJSON) v2.11 as a b
 
 # run with specific log level
 
-    docker run -e REDIS_LOGLEVEL=notice -p 6379:6379 --name redis2 pubregistry.aws.cloud.mov.ai/ce/redis2
+    docker run -e REDIS_LOG_LEVEL=notice -p 6379:6379 --name redis2 pubregistry.aws.cloud.mov.ai/ce/redis2
 
 
 ## Build
