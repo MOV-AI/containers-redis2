@@ -18,14 +18,18 @@
 set -m
 
 sed -i -e "/^port:/s/:.*/ $REDIS_PORT/" /etc/redis.conf
+sed -i -e "/^loglevel:/s/:.*/ $REDIS_LOG_LEVEL/" /etc/redis.conf
 
 # Run command in background
 exec docker-entrypoint.sh ${@} &
 
 HOST=localhost
-PORT=$REDIS_PORT
+PORT=${REDIS_PORT:-6379}
+LOG_LEVEL=${REDIS_LOG_LEVEL:-notice}
 
 printf "Waiting redis on %s:.\n" "$HOST:$PORT"
+printf "Log level: %s\n" "$LOG_LEVEL"
+
 while ! redis-cli -h $HOST -p $PORT ping | grep -q PONG; do
     sleep 1
     printf "."
