@@ -7,7 +7,6 @@ on:
   push:
     branches:
       - main
-      - dev
     tags:
       - 'v*.*.*'
   pull_request:
@@ -72,7 +71,6 @@ jobs:
           images="redis2"
           for img in $images; do
             docker pull "${{ env.DOCKER_REGISTRY }}/devops/${img}:${{ steps.get_version.outputs.DOCKER_TAG }}"
-            docker tag "${{ env.DOCKER_REGISTRY }}/devops/${img}:${{ steps.get_version.outputs.DOCKER_TAG }}" "${{ env.DOCKER_REGISTRY }}/develop/${img}:${{ steps.get_version.outputs.DOCKER_TAG }}"
             docker tag "${{ env.DOCKER_REGISTRY }}/devops/${img}:${{ steps.get_version.outputs.DOCKER_TAG }}" "${{ env.DOCKER_REGISTRY }}/qa/${img}:${{ steps.get_version.outputs.DOCKER_TAG }}"
             docker push "${{ env.DOCKER_REGISTRY }}/develop/${img}:${{ steps.get_version.outputs.DOCKER_TAG }}"
             docker push "${{ env.DOCKER_REGISTRY }}/qa/${img}:${{ steps.get_version.outputs.DOCKER_TAG }}"
