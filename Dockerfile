@@ -5,12 +5,6 @@ LABEL description="MOV.AI Redis Image"
 LABEL maintainer="maintainer@mov.ai"
 LABEL movai="redis"
 
-# Configure and install
-COPY files/etc/ /etc/
-COPY files/bin/ /usr/local/bin/
-
-ENV REDIS_PORT 6379
-
 # hadolint ignore=DL3008
 RUN apt-get update &&\
     apt-get -y install --no-install-recommends redis-tools \
@@ -20,5 +14,12 @@ RUN apt-get update &&\
     rm -rf /var/cache/apt/* &&\
     rm -rf /var/lib/apt/lists/*  &&\
     rm -rf /tmp/*
+
+    # Configure and install
+COPY files/etc/ /etc/
+COPY files/bin/ /usr/local/bin/
+
+ENV REDIS_PORT=6379 \
+    REDIS_LOG_LEVEL=warning
 
 ENTRYPOINT ["movai-entrypoint.sh","/etc/redis.conf"]
